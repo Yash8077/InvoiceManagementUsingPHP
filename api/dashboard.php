@@ -1,7 +1,9 @@
 <?php
+// Start session
+session_start();
+
 
 // Handle logout
-session_start();
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     // Destroy the session and expire the cookie
     session_unset();

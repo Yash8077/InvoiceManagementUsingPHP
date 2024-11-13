@@ -1,56 +1,35 @@
+<?php
+// Start session
+session_start();
 
-<!-- // Handle logout
-//session_start();
-// if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-//     Destroy the session and expire the cookie
-//     session_unset();
-//     session_destroy();
-//     setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
+// Predefined credentials
+define('USERNAME', 'admin');
+define('PASSWORD', 'password123');
 
-//     Redirect to login page
-//     header('Location: index.php');
-//     exit;
-// }
-
-// Check login status based on session or cookie
-/*if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
-    !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
-
-    // If not logged in, redirect to login page
-    header('Location: index.php');
+// Check if user is already logged in using cookies
+if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true) {
+    $_SESSION['loggedin'] = true;
+    header('Location: dashboard.php');
     exit;
 }*/ -->
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice System</title>
+    <title>Login - Invoice System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body class="bg-gray-100 font-sans min-h-screen flex">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-blue-900 text-white flex-shrink-0 h-screen sticky top-0 p-5 flex flex-col justify-between">
-        <div>
-            <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
-            <nav class="space-y-4">
-                <a href="dashboard.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition bg-blue-700 text-white">
-                    Dashboard
-                </a>
-                <a href="manage_clients.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
-                    Manage Clients
-                </a>
-                <a href="search_json.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
-                    Search Invoices
-                </a>
-                <a href="view_reports.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
-                    View Reports
-                </a>
-            </nav>
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-semibold text-gray-800">Welcome Back</h2>
+            <p class="text-gray-500">Please log in to continue</p>
         </div>
         
         <!-- Logout Button at the Bottom -->
@@ -116,4 +95,5 @@
         </div>
     </main>
 </body>
+
 </html>
