@@ -11,7 +11,7 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) ||
     (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
 
     // Redirect to dashboard if logged in
-    header('Location: dashboard.php');
+    header('Location: /dashboard');
     exit;
 }
 
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['loggedin'] = true;
         setcookie('loggedin', 'true', time() + (7 * 24 * 60 * 60), '/'); // 7 days expiration
         
-        header('Location: dashboard.php');
+        header('Location: /dashboard');
         exit;
     } else {
         $error = 'Invalid username or password';
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p class="text-red-600 text-center mb-4 font-semibold"><?= $error ?></p>
         <?php endif; ?>
 
-        <form action="index.php" method="post" class="space-y-6">
+        <form action="/" method="post" class="space-y-6">
             <div class="relative">
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" name="username" id="username" placeholder="Username" 
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
         <div class="mt-6 text-center">
-            <p class="text-gray-600">Don’t have an account? 
+            <p class="text-gray-600">Dont have an account? 
                 <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Sign up</a>
             </p>
         </div>

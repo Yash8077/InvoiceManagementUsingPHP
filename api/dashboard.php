@@ -11,7 +11,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
 
     // Redirect to login page
-    header('Location: index.php');
+    header('Location: /');
     exit;
 }
 
@@ -20,7 +20,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
     !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
 
     // If not logged in, redirect to login page
-    header('Location: index.php');
+    header('Location: /');
     exit;
 }
 ?>
@@ -41,16 +41,16 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
         <div>
             <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
             <nav class="space-y-4">
-                <a href="dashboard.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition bg-blue-700 text-white">
+                <a href="/dashboard" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition bg-blue-700 text-white">
                     Dashboard
                 </a>
-                <a href="manage_clients.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                <a href="/manage_clients" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
                     Manage Clients
                 </a>
-                <a href="search_json.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                <a href="/search_json" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
                     Search Invoices
                 </a>
-                <a href="view_reports.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                <a href="/view_reports" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
                     View Reports
                 </a>
             </nav>
