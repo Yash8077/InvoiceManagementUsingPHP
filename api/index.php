@@ -9,8 +9,8 @@ define('PASSWORD', 'password123');
 // Check if user is already logged in using either session or cookie
 if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) || 
     (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
-    
-    // If user is logged in, redirect to dashboard
+
+    // Redirect to dashboard if logged in
     header('Location: dashboard.php');
     exit;
 }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($username === USERNAME && $password === PASSWORD) {
         // Set session and cookie for 7 days
         $_SESSION['loggedin'] = true;
-        setcookie('loggedin', true, time() + (7 * 24 * 60 * 60), '/'); // 7 days expiration
+        setcookie('loggedin', 'true', time() + (7 * 24 * 60 * 60), '/'); // 7 days expiration
         
         header('Location: dashboard.php');
         exit;
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
         <div class="mt-6 text-center">
-            <p class="text-gray-600">Don't have an account? 
+            <p class="text-gray-600">Don’t have an account? 
                 <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Sign up</a>
             </p>
         </div>

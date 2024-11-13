@@ -1,22 +1,23 @@
-
 <?php
 
 // Handle logout
 session_start();
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-    // Destroy the session
+    // Destroy the session and expire the cookie
     session_unset();
     session_destroy();
-
-    // Remove the cookie
     setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
 
     // Redirect to login page
     header('Location: index.php');
     exit;
 }
-else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
-    // If not logged in, redirect to the login page
+
+// Check login status based on session or cookie
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
+    !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
+
+    // If not logged in, redirect to login page
     header('Location: index.php');
     exit;
 }
@@ -24,7 +25,6 @@ else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,27 +40,15 @@ else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(
             <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
             <nav class="space-y-4">
                 <a href="dashboard.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition bg-blue-700 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
-                    </svg>
                     Dashboard
                 </a>
                 <a href="manage_clients.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
                     Manage Clients
                 </a>
                 <a href="search_json.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12h14M7 8h14m-7 8h7" />
-                    </svg>
                     Search Invoices
                 </a>
                 <a href="view_reports.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="currentColor">
-                        <path fill-rule="evenodd" d="M3 3h18a1 1 0 011 1v16a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1zM5 17h2V9H5v8zm4 0h2V5H9v12zm4 0h2V7h-2v10zm4 0h2V3h-2v14z" clip-rule="evenodd" />
-                    </svg>
                     View Reports
                 </a>
             </nav>
@@ -68,9 +56,6 @@ else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(
         
         <!-- Logout Button at the Bottom -->
         <a href="dashboard.php?action=logout" class="flex items-center px-3 py-2 bg-red-600 hover:bg-red-700 rounded-md transition mt-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" />
-            </svg>
             Logout
         </a>
     </aside>
@@ -118,11 +103,11 @@ else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(
                                             <td class='py-4 px-6'>{$invoice['client_name']}</td>
                                             <td class='py-4 px-6'>{$invoice['invoice_date']}</td>
                                             <td class='py-4 px-6'>{$invoice['currency']}</td>
-                                            <td class='py-4 px-6'>{$invoice['invoice_total']}</td>
+                                            <td class='py-4 px-6'>{$invoice['total_amount']}</td>
                                           </tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='5' class='py-8 text-center text-gray-500'>No recent invoices found.</td></tr>";
+                                echo "<tr><td colspan='5' class='py-4 px-6 text-center text-gray-500'>No invoices found.</td></tr>";
                             }
                             ?>
                         </tbody>
@@ -132,5 +117,4 @@ else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(
         </div>
     </main>
 </body>
-
 </html>
