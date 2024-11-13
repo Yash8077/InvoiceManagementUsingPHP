@@ -14,13 +14,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 }
 
 // Check login status based on session or cookie
-if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
+/*if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
     !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
 
     // If not logged in, redirect to login page
     header('Location: index.php');
     exit;
-}
+}*/
 ?>
 
 <!DOCTYPE html>
