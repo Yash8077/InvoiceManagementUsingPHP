@@ -1,15 +1,16 @@
 <?php
 // Start session
 session_start();
-$_SESSION['loggedin'] = false;
-// Destroy the session and expire the cookie
-session_unset();
-session_destroy();
 
-// Expire the cookie by setting its expiration time to the past
-setcookie('loggedin', 'false', time() - 3600, '/'); // Expire cookie immediately
+// Check if the action parameter is set in the URL and it's 'logout'
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    // Destroy the session and expire the cookie
+    session_unset(); // Clears all session variables
+    session_destroy(); // Destroys the session
+    setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
 
-// Redirect to login page
-header('Location: /');  // Adjust the URL if needed
-exit;
+    // Redirect to login page
+    header('Location: /');  // Adjust the URL if needed (login page URL)
+    exit;  // Stop further execution of the script
+}
 ?>

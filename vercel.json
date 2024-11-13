@@ -11,7 +11,7 @@
       { "src": "/view_invoices", "dest": "/api/view_invoices.php" },
       { "src": "/generate_invoice", "dest": "/api/generate_invoice.php" },
       { "src": "/manage_clients", "dest": "/api/manage_clients.php" },
-      { "src": "/view_reports", "dest": "/view_reports.php" },
+      { "src": "/view_reports", "dest": "/api/view_reports.php" },
       { "src": "/logout", "dest": "/api/logout.php" }
   
     ]
