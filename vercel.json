@@ -3,29 +3,6 @@
       "api/*.php": {
         "runtime": "vercel-php@0.7.3"
       }
-    },
-    "routes": [
-      { "src": "/", "dest": "/api/index.php" },
-      {
-        "src": "/dashboard.php",
-        "dest": "/api/dashboard.php"
-      },
-      {
-        "src": "/search_json.php",
-        "dest": "/api/search_json.php"
-      },
-      {
-        "src": "/view_invoices.php",
-        "dest": "/api/view_invoices.php"
-      },
-      {
-        "src": "/generate_invoice.php",
-        "dest": "/api/generate_invoice.php"
-      },
-      {
-        "src": "/manage_clients.php",
-        "dest": "/api/manage_clients.php"
-      }
-    ]
+    }
   }
   
