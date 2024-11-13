@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: index.php');
+    exit;
+}
+?>
+<?php
 // Function to search invoices from JSON
 function searchInvoices($searchTerm) {
     $invoices = [];
@@ -74,7 +81,7 @@ if (isset($_GET['search'])) {
         <div>
         <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
             <nav class="space-y-4">
-                <a href="index.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                <a href="dashboard.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" />
                     </svg>
