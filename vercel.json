@@ -21,6 +21,10 @@
       {
         "src": "/generate_invoice.php",
         "dest": "/api/generate_invoice.php"
+      },
+      {
+        "src": "/manage_clients.php",
+        "dest": "/api/manage_clients.php"
       }
     ]
   }
