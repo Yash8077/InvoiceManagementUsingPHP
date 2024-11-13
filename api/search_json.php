@@ -1,6 +1,10 @@
 <?php
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
+    !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
+
+    // If not logged in, redirect to login page
     header('Location: /');
     exit;
 }
