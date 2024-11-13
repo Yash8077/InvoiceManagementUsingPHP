@@ -1,12 +1,13 @@
 <?php
+// Start session
 session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+
+// Check if the user is logged in via session or cookie
+if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
+    // If not logged in, redirect to the login page
     header('Location: index.php');
     exit;
 }
-?>
-<?php
-
 // Load invoices from JSON file
 $invoices = [];
 if (file_exists('invoices.json')) {

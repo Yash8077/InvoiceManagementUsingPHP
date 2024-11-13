@@ -6,9 +6,11 @@ session_start();
 define('USERNAME', 'admin');
 define('PASSWORD', 'password123');
 
-// Check if user is already logged in using cookies
-if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true) {
-    $_SESSION['loggedin'] = true;
+// Check if user is already logged in using either session or cookie
+if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) || 
+    (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
+    
+    // If user is logged in, redirect to dashboard
     header('Location: dashboard.php');
     exit;
 }
@@ -34,14 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Invoice System</title>
+    <title>LandmarkLogin - Invoice System</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-gradient-to-r from-blue-500 to-purple-600 h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div class="text-center mb-6">
@@ -81,5 +81,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
-
 </html>

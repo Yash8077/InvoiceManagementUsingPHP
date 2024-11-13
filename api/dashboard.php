@@ -1,10 +1,8 @@
 
 <?php
-// Start session
-session_start();
-
 
 // Handle logout
+session_start();
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     // Destroy the session
     session_unset();
@@ -14,6 +12,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
 
     // Redirect to login page
+    header('Location: index.php');
+    exit;
+}
+else if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
+    // If not logged in, redirect to the login page
     header('Location: index.php');
     exit;
 }
