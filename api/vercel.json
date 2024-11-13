@@ -5,7 +5,23 @@
       }
     },
     "routes": [
-      { "src": "/(.*)", "dest": "/api/index.php" }
+      { "src": "/", "dest": "/api/index.php" },
+      {
+        "src": "/dashboard",
+        "dest": "/api/dashboard.php"
+      },
+      {
+        "src": "/search_json",
+        "dest": "/api/search_json.php"
+      },
+      {
+        "src": "/view_invoices",
+        "dest": "/api/view_invoices.php"
+      },
+      {
+        "src": "/generate_invoice",
+        "dest": "/api/generate_invoice.php"
+      }
     ]
   }
   
