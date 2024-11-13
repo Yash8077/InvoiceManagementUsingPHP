@@ -14,8 +14,6 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
 $invoices = [];
 if (file_exists('invoices.json')) {
     $invoices = json_decode(file_get_contents('invoices.json'), true);
-} else {
-    echo "Invoice file not found.";
 }
 
 // Prepare data for the line chart
