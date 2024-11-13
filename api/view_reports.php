@@ -72,7 +72,7 @@ $chartData = [
     <!-- Sidebar -->
     <aside class="w-64 bg-blue-900 text-white flex-shrink-0 h-screen sticky top-0 p-5 flex flex-col justify-between">
         <div>
-        <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
+            <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
             <nav class="space-y-4">
                 <a href="/dashboard" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,19 +99,18 @@ $chartData = [
                     </svg>
                      View Reports
                 </a>
-
-
             </nav>
         </div>
         
         <!-- Logout Button at the Bottom -->
-        <a href="logout.php" class="flex items-center px-3 py-2 bg-red-600 hover:bg-red-700 rounded-md transition mt-auto">
+        <a href="/logout" class="flex items-center px-3 py-2 bg-red-600 hover:bg-red-700 rounded-md transition mt-auto">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" />
             </svg>
             Logout
         </a>
     </aside>
+
 
     <!-- Main Content -->
     <div class="flex-1 p-8">
