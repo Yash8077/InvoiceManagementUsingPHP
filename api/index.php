@@ -1,37 +1,26 @@
 <?php
-// Start session
+
+// Handle logout
 session_start();
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    // Destroy the session and expire the cookie
+    session_unset();
+    session_destroy();
+    setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
 
-// Predefined credentials
-define('USERNAME', 'admin');
-define('PASSWORD', 'password123');
-
-// Check if user is already logged in using either session or cookie
-if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) || 
-    (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
-
-    // Redirect to dashboard if logged in
-    header('Location: dashboard.php');
+    // Redirect to login page
+    header('Location: index.php');
     exit;
 }
 
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+// Check login status based on session or cookie
+/*if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
+    !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
 
-    // Authenticate user
-    if ($username === USERNAME && $password === PASSWORD) {
-        // Set session and cookie for 7 days
-        $_SESSION['loggedin'] = true;
-        setcookie('loggedin', 'true', time() + (7 * 24 * 60 * 60), '/'); // 7 days expiration
-        
-        header('Location: dashboard.php');
-        exit;
-    } else {
-        $error = 'Invalid username or password';
-    }
-}
+    // If not logged in, redirect to login page
+    header('Location: index.php');
+    exit;
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -39,46 +28,93 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LandmarkLogin - Invoice System</title>
+    <title>Invoice System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gradient-to-r from-blue-500 to-purple-600 h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <div class="text-center mb-6">
-            <h2 class="text-3xl font-semibold text-gray-800">Welcome Back</h2>
-            <p class="text-gray-500">Please log in to continue</p>
+
+<body class="bg-gray-100 font-sans min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-blue-900 text-white flex-shrink-0 h-screen sticky top-0 p-5 flex flex-col justify-between">
+        <div>
+            <h2 class="text-2xl font-semibold mb-8">Invoice Generator</h2>
+            <nav class="space-y-4">
+                <a href="dashboard.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition bg-blue-700 text-white">
+                    Dashboard
+                </a>
+                <a href="manage_clients.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                    Manage Clients
+                </a>
+                <a href="search_json.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                    Search Invoices
+                </a>
+                <a href="view_reports.php" class="flex items-center px-3 py-2 hover:bg-blue-800 rounded-md transition">
+                    View Reports
+                </a>
+            </nav>
         </div>
+        
+        <!-- Logout Button at the Bottom -->
+        <a href="dashboard.php?action=logout" class="flex items-center px-3 py-2 bg-red-600 hover:bg-red-700 rounded-md transition mt-auto">
+            Logout
+        </a>
+    </aside>
 
-        <?php if (!empty($error)) : ?>
-            <p class="text-red-600 text-center mb-4 font-semibold"><?= $error ?></p>
-        <?php endif; ?>
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+        <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="p-8">
+                <h1 class="text-4xl font-bold text-center text-blue-900 mb-6">Welcome to the Invoice System</h1>
+                <div class="flex space-x-4 mb-8 justify-center">
+                    <a href="generate_invoice.php" class="block flex-1 text-center bg-blue-600 text-white py-3 px-5 rounded-md hover:bg-blue-700 transition shadow-md transform hover:scale-105">
+                        Generate an Invoice
+                    </a>
+                    <a href="search_json.php" class="block flex-1 text-center bg-green-600 text-white py-3 px-5 rounded-md hover:bg-green-700 transition shadow-md transform hover:scale-105">
+                        Search an Invoice
+                    </a>
+                </div>
+                
+                <h2 class="text-2xl font-semibold text-blue-800 mb-4">Recent Invoices</h2>
+                <div class="overflow-x-auto rounded-lg">
+                    <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+                        <thead>
+                            <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+                                <th class="py-4 px-6 text-left font-semibold">Invoice Number</th>
+                                <th class="py-4 px-6 text-left font-semibold">Client Name</th>
+                                <th class="py-4 px-6 text-left font-semibold">Date</th>
+                                <th class="py-4 px-6 text-left font-semibold">Currency</th>
+                                <th class="py-4 px-6 text-left font-semibold">Total Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm font-light">
+                            <?php
+                            // Load invoices from JSON file
+                            $invoices = [];
+                            if (file_exists('invoices.json')) {
+                                $invoices = json_decode(file_get_contents('invoices.json'), true);
+                            }
 
-        <form action="index.php" method="post" class="space-y-6">
-            <div class="relative">
-                <label for="username" class="sr-only">Username</label>
-                <input type="text" name="username" id="username" placeholder="Username" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                    required>
+                            // Display recent invoices, up to the 5 most recent ones
+                            $recentInvoices = array_slice(array_reverse($invoices), 0, 5);
+                            if (!empty($recentInvoices)) {
+                                foreach ($recentInvoices as $invoice) {
+                                    echo "<tr class='border-b border-gray-300 hover:bg-gray-100 transition'>
+                                            <td class='py-4 px-6'>{$invoice['invoice_number']}</td>
+                                            <td class='py-4 px-6'>{$invoice['client_name']}</td>
+                                            <td class='py-4 px-6'>{$invoice['invoice_date']}</td>
+                                            <td class='py-4 px-6'>{$invoice['currency']}</td>
+                                            <td class='py-4 px-6'>{$invoice['total_amount']}</td>
+                                          </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='5' class='py-4 px-6 text-center text-gray-500'>No invoices found.</td></tr>";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-            <div class="relative">
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" name="password" id="password" placeholder="Password" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                    required>
-            </div>
-
-            <button type="submit" 
-                class="w-full py-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-300 transform hover:scale-105">
-                Login
-            </button>
-        </form>
-
-        <div class="mt-6 text-center">
-            <p class="text-gray-600">Don’t have an account? 
-                <a href="#" class="text-blue-500 hover:text-blue-700 font-semibold">Sign up</a>
-            </p>
         </div>
-    </div>
+    </main>
 </body>
 </html>
