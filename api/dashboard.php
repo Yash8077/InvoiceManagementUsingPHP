@@ -14,7 +14,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 }
 
 // Check login status based on session or cookie
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+else if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     // Check cookie if session is not set
     if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true') {
         $_SESSION['loggedin'] = true;
