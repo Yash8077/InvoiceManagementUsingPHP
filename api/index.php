@@ -1,11 +1,12 @@
 <?php
+// Start session
 session_start();
 
 // Predefined credentials
 define('USERNAME', 'admin');
 define('PASSWORD', 'password123');
 
-// Check if the user is already logged in using either session or cookie
+// Check if user is already logged in using either session or cookie
 if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) || 
     (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
 
@@ -25,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['loggedin'] = true;
         setcookie('loggedin', 'true', time() + (7 * 24 * 60 * 60), '/'); // 7 days expiration
         
-        header('Location: /dashboard');
-        exit;
+        // header('Location: /dashboard');
+        // exit;
     } else {
         $error = 'Invalid username or password';
     }
@@ -80,4 +81,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 </body>
-</html>
+</html> 
