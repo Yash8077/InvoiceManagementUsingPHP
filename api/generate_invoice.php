@@ -1,8 +1,8 @@
 <?php
-// Include PHPMailer classes manually
-require './phpmailer/PHPMailer.php';
-require './phpmailer/SMTP.php';
-require './phpmailer/Exception.php';
+// Include PHPMailer classes manual
+require '/phpmailer/PHPMailer.php';
+require '/phpmailer/SMTP.php';
+require '/phpmailer/Exception.php';
 require 'generate_pdf.php'; // Make sure generate_pdf.php is included
 require 'send_email.php';
 
@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $discount_rate = $_POST['discount_rate'];
     $invoice_total=0;
     // Generate PDF
+    
     generateInvoicePDF($client_name, $invoice_number, $invoice_date, $items, $currency, $tax_rate, $discount_rate,$invoice_total);
 
     // Save data in JSON format for later retrieval (store as an array of objects)

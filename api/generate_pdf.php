@@ -1,5 +1,5 @@
 <?php
-require_once('./fpdf/fpdf.php'); 
+require_once('/fpdf/fpdf.php'); 
 
 function generateInvoicePDF($client_name, $invoice_number, $invoice_date, $items, $currency, $tax_rate, $discount_rate,&$invoice_total) {
 
