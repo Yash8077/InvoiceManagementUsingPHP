@@ -73,10 +73,10 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
             <div class="p-8">
                 <h1 class="text-4xl font-bold text-center text-blue-900 mb-6">Welcome to the Invoice System</h1>
                 <div class="flex space-x-4 mb-8 justify-center">
-                    <a href="generate_invoice.php" class="block flex-1 text-center bg-blue-600 text-white py-3 px-5 rounded-md hover:bg-blue-700 transition shadow-md transform hover:scale-105">
+                    <a href="/generate_invoice" class="block flex-1 text-center bg-blue-600 text-white py-3 px-5 rounded-md hover:bg-blue-700 transition shadow-md transform hover:scale-105">
                         Generate an Invoice
                     </a>
-                    <a href="search_json.php" class="block flex-1 text-center bg-green-600 text-white py-3 px-5 rounded-md hover:bg-green-700 transition shadow-md transform hover:scale-105">
+                    <a href="/search_json" class="block flex-1 text-center bg-green-600 text-white py-3 px-5 rounded-md hover:bg-green-700 transition shadow-md transform hover:scale-105">
                         Search an Invoice
                     </a>
                 </div>
