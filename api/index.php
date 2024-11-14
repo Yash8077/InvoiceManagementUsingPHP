@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['loggedin'] = true;
         setcookie('loggedin', 'true', time() + (7 * 24 * 60 * 60), '/'); // 7 days expiration
         
-        // header('Location: /dashboard');
-        // exit;
+        header('Location: /dashboard');
+        exit;
     } else {
         $error = 'Invalid username or password';
     }
