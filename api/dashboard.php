@@ -9,21 +9,26 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
     setcookie('loggedin', '', time() - 3600, '/'); // Expire cookie immediately
 
     // Redirect to login page
-    header('Location: /l');  // Adjust the URL to point to your login page
+    header('Location: /');  // Adjust the URL to point to your login page
     exit;  // Stop further execution of the script
 }
 
 // Check login status based on session or cookie
-if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) && 
-    !(isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true')) {
-
-    // If not logged in, redirect to login page
-    if ($_SERVER['REQUEST_URI'] != '/') {
-        header('Location: /');
-        exit;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    // Check cookie if session is not set
+    if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 'true') {
+        $_SESSION['loggedin'] = true;
+    } else {
+        // If not logged in, redirect to login page only if not already there
+        if ($_SERVER['REQUEST_URI'] != '/') {
+            header('Location: /');
+            exit;
+        }
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
