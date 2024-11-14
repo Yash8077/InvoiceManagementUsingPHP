@@ -20,7 +20,7 @@ function searchInvoices($searchTerm) {
     foreach ($invoices as $invoice) {
         if (stripos($invoice['client_name'], $searchTerm) !== false || 
             stripos($invoice['invoice_number'], $searchTerm) !== false) {
-            $invoice['pdf_file'] = '../invoice/' . $invoice['client_name'] . '_' . $invoice['invoice_number'] . '_' . $invoice['invoice_date'] . '.pdf';
+            $invoice['pdf_file'] = './invoice/' . $invoice['client_name'] . '_' . $invoice['invoice_number'] . '_' . $invoice['invoice_date'] . '.pdf';
             $results[] = $invoice;
         }
     }
@@ -35,7 +35,7 @@ function deleteInvoice($invoiceNumber, $clientName) {
 
     foreach ($invoices as $invoice) {
         if ($invoice['invoice_number'] === $invoiceNumber && $invoice['client_name'] === $clientName) {
-            $pdfPath = '../invoice/' . $clientName . '_' . $invoiceNumber . '_' . $invoice['invoice_date'] . '.pdf';
+            $pdfPath = './invoice/' . $clientName . '_' . $invoiceNumber . '_' . $invoice['invoice_date'] . '.pdf';
             if (file_exists($pdfPath)) {
                 unlink($pdfPath);
             }

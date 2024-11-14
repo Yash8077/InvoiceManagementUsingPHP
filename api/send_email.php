@@ -20,7 +20,7 @@ function sendEmail($client_name, $invoice_number, $currency,$invoice_date) {
         $mail->isHTML(true);
         $mail->Subject = 'Invoice ' . $invoice_number;
         $mail->Body    = "Invoice for client $client_name. Amount: $currency. Invoice Number: $invoice_number.";
-        $mail->addAttachment('../invoice/'.$client_name.'_'.$invoice_number .'_'.$invoice_date.'.pdf');
+        $mail->addAttachment('./invoice/'.$client_name.'_'.$invoice_number .'_'.$invoice_date.'.pdf');
         // $mail->addAttachment('../invoice/generated_invoice.pdf'); // Path to the generated PDF
 
         $mail->send();
