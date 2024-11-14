@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-10">
         <h1 class="text-3xl font-semibold text-center mb-6">Invoice Generator</h1>
         
-        <form action="generate_invoice.php" method="POST">
+        <form action="/generate_invoice" method="POST">
             <!-- Client Info Section -->
             <div class="space-y-4">
                 <div>
