@@ -1,12 +1,11 @@
 <?php
-// Start session
 session_start();
 
 // Predefined credentials
 define('USERNAME', 'admin');
 define('PASSWORD', 'password123');
 
-// Check if user is already logged in using either session or cookie
+// Check if the user is already logged in using either session or cookie
 if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) || 
     (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true)) {
 
