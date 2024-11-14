@@ -1,8 +1,8 @@
 <?php
 // Include PHPMailer classes manually
-require '../phpmailer/PHPMailer.php';
-require '../phpmailer/SMTP.php';
-require '../phpmailer/Exception.php';
+require './phpmailer/PHPMailer.php';
+require './phpmailer/SMTP.php';
+require './phpmailer/Exception.php';
 require 'generate_pdf.php'; // Make sure generate_pdf.php is included
 require 'send_email.php';
 
