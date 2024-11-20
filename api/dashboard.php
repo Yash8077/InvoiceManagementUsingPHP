@@ -93,7 +93,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
                         <?php
                      
                         // Create connection
-                        include 'config.php';
+                        require 'config.php';
               
                         $sql = "SELECT * FROM invoices ORDER BY invoice_date DESC LIMIT 5";
                         $result = $conn->query($sql);
