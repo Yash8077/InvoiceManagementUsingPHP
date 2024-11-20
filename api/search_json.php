@@ -10,16 +10,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
 }
 
 
-$host = 'mysql-d5a1f3e-ymishra502-1c9c.e.aivencloud.com';      
-$user = 'avnadmin';       
-$pass= 'AVNS_syB-8FeCZFNJ3mLjV74';         
-$db = 'defaultdb'; 
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+require 'config.php';
 // Function to search invoices in the database
 function searchInvoices($conn, $searchTerm) {
     $results = [];

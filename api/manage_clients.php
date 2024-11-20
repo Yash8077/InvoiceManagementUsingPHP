@@ -8,18 +8,7 @@ if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) &&
     exit;
 }
 
-$servername = 'mysql-d5a1f3e-ymishra502-1c9c.e.aivencloud.com';      
-$username = 'avnadmin';       
-$password = 'AVNS_syB-8FeCZFNJ3mLjV74';         
-$dbname = 'defaultdb'; 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+require 'config.php';
 
 $sortQuery = "ORDER BY client_name ASC"; 
 if (isset($_GET['sort_by'])) {
@@ -48,7 +37,6 @@ if ($result->num_rows > 0) {
     $clients = [];
 }
 
-$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
