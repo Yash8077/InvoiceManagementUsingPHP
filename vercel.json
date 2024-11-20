@@ -1,6 +1,7 @@
 {
     "functions": {
       "api/*.php": {
+        "maxDuration": 60,
         "runtime": "vercel-php@0.7.3"
       }
     },
