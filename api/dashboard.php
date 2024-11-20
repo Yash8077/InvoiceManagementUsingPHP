@@ -102,8 +102,7 @@ define('port', '18929');
 define('user', 'avnadmin'); // Database username
 define('password', 'AVNS_syB-8FeCZFNJ3mLjV74'); // Database password
 define('database', 'defaultdb'); // Database name
-define('ca_cert', _DIR_ . 'ca.pem'); // Correct the path to your CA certificate
-
+define('ca_cert', __DIR__ . '/ca.pem'); // Correct the path to your CA certificate
 // Initialize the MySQL connection
 $conn = mysqli_init();
 
