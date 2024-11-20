@@ -1,0 +1,206 @@
+[
+    {
+        "client_name": "Tata Industries",
+        "invoice_number": "123",
+        "invoice_date": "2024-11-08",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Table",
+                "quantity": "10",
+                "price": "20",
+                "discount": "10"
+            }
+        ],
+        "tax_rate": "10",
+        "discount_rate": "0",
+        "invoice_total": 1980
+    },
+    {
+        "client_name": "Reliance Enterprises",
+        "invoice_number": "124",
+        "invoice_date": "2024-11-09",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Chair",
+                "quantity": "15",
+                "price": "30",
+                "discount": "5"
+            }
+        ],
+        "tax_rate": "8",
+        "discount_rate": "5",
+        "invoice_total": 4200
+    },
+    {
+        "client_name": "Infosys Ltd.",
+        "invoice_number": "125",
+        "invoice_date": "2024-10-25",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Sofa",
+                "quantity": "5",
+                "price": "150",
+                "discount": "20"
+            }
+        ],
+        "tax_rate": "12",
+        "discount_rate": "10",
+        "invoice_total": 7500
+    },
+    {
+        "client_name": "Wipro Co.",
+        "invoice_number": "126",
+        "invoice_date": "2024-11-10",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Desk Lamp",
+                "quantity": "30",
+                "price": "15",
+                "discount": "3"
+            }
+        ],
+        "tax_rate": "5",
+        "discount_rate": "0",
+        "invoice_total": 4320
+    },
+    {
+        "client_name": "L&T Solutions",
+        "invoice_number": "127",
+        "invoice_date": "2024-09-15",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Monitor",
+                "quantity": "20",
+                "price": "120",
+                "discount": "10"
+            }
+        ],
+        "tax_rate": "15",
+        "discount_rate": "10",
+        "invoice_total": 21600
+    },
+    {
+        "client_name": "HCL Systems",
+        "invoice_number": "128",
+        "invoice_date": "2024-08-20",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Keyboard",
+                "quantity": "50",
+                "price": "10",
+                "discount": "2"
+            }
+        ],
+        "tax_rate": "5",
+        "discount_rate": "0",
+        "invoice_total": 4000
+    },
+    {
+        "client_name": "Tech Mahindra Global",
+        "invoice_number": "129",
+        "invoice_date": "2024-07-12",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Headphones",
+                "quantity": "25",
+                "price": "40",
+                "discount": "5"
+            }
+        ],
+        "tax_rate": "20",
+        "discount_rate": "5",
+        "invoice_total": 9500
+    },
+    {
+        "client_name": "Bharat Forge Inc.",
+        "invoice_number": "130",
+        "invoice_date": "2024-11-12",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Office Chair",
+                "quantity": "8",
+                "price": "85",
+                "discount": "15"
+            }
+        ],
+        "tax_rate": "10",
+        "discount_rate": "15",
+        "invoice_total": 5440
+    },
+    {
+        "client_name": "Indian Oil Technologies",
+        "invoice_number": "131",
+        "invoice_date": "2024-11-05",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Desk",
+                "quantity": "12",
+                "price": "120",
+                "discount": "10"
+            }
+        ],
+        "tax_rate": "18",
+        "discount_rate": "10",
+        "invoice_total": 15840
+    },
+    {
+        "client_name": "Bharti Airtel Corp.",
+        "invoice_number": "132",
+        "invoice_date": "2024-10-30",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Monitor Stand",
+                "quantity": "35",
+                "price": "25",
+                "discount": "3"
+            }
+        ],
+        "tax_rate": "8",
+        "discount_rate": "5",
+        "invoice_total": 8600
+    },
+    {
+        "client_name": "Tata Networks",
+        "invoice_number": "133",
+        "invoice_date": "2024-11-14",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Printer",
+                "quantity": "10",
+                "price": "200",
+                "discount": "20"
+            }
+        ],
+        "tax_rate": "10",
+        "discount_rate": "10",
+        "invoice_total": 18000
+    },
+    {
+        "client_name": "Mahindra Innovations",
+        "invoice_number": "134",
+        "invoice_date": "2024-11-02",
+        "currency": "INR",
+        "items": [
+            {
+                "description": "Scanner",
+                "quantity": "12",
+                "price": "75",
+                "discount": "10"
+            }
+        ],
+        "tax_rate": "5",
+        "discount_rate": "5",
+        "invoice_total": 9000
+    }
+]
